@@ -1,4 +1,4 @@
-# Student At-Risk Prediction — Take-Home
+# Student At-Risk Prediction
 
 Mid-semester early-warning model for student academic outcomes, built on the Kaggle [Students Grading Dataset](https://www.kaggle.com/datasets/mahmoudelhemaly/students-grading-dataset), plus a data-quality/bias audit of the dataset's "biased" variant.
 
