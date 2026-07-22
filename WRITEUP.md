@@ -32,7 +32,8 @@ Subgroup checks (gender, income, home internet) show recall gaps ≤ 5 percentag
 
 The same pipeline trained on the biased file scores AUC 0.75, but shuffling the single Attendance column collapses it to 0.50. Its apparent skill is entirely the corrupted label — the grade "ladder" is really an attendance ladder (figure below). In this extract, the artifact is spread evenly across sensitive groups (attendance differs ≤ 0.6 percentage points between groups), which is luck, not safety: the moment attendance correlates with income or connectivity, the integrity failure becomes a fairness failure. Verdict: label-provenance checks belong in ingest, before any training run.
 
-![Biased file: attendance by grade](outputs/fig_audit_attendance_by_grade.png)
+<img src="outputs/fig_audit_attendance_by_grade.png" width="480" alt="Biased file: attendance by grade">
+
 
 *Median attendance climbs steadily from F to A, while the academic scores that supposedly determine the grade stay flat. The grade "ladder" is an attendance ladder.*
 
