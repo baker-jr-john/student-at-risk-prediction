@@ -1,7 +1,7 @@
 [project]
 name = "student-at-risk"
 version = "0.1.0"
-description = "Mid-semester at-risk prediction on the Students Grading dataset (Motiva take-home)"
+description = "Mid-semester at-risk prediction on the Students Grading dataset"
 requires-python = ">=3.10"
 dependencies = [
     "pandas>=2.0",

@@ -2,7 +2,7 @@
 
 Mid-semester early-warning model for student academic outcomes, built on the Kaggle [Students Grading Dataset](https://www.kaggle.com/datasets/mahmoudelhemaly/students-grading-dataset), plus a data-quality/bias audit of the dataset's "biased" variant.
 
-Start with `WRITEUP.md` for what was found and built and why. Everything below is how to reproduce it.
+Start with [`WRITEUP.md`](WRITEUP.md) for what was found and built and why. Everything below is how to reproduce it.
 
 All commands below are run from the project root — the folder containing this README and `src/`. If you received the project as an archive, extract it whole and work inside it.
 
