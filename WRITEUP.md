@@ -34,7 +34,7 @@ The same pipeline trained on the biased file scores AUC 0.75, but shuffling the 
 
 ![Biased file: attendance by grade](outputs/fig_audit_attendance_by_grade.png)
 
-*Biased file: median attendance climbs steadily from F to A, while the academic scores that supposedly determine the grade stay flat — the grade "ladder" is an attendance ladder.*
+*Median attendance climbs steadily from F to A, while the academic scores that supposedly determine the grade stay flat. The grade "ladder" is an attendance ladder.*
 
 ## Tradeoffs and limitations
 
