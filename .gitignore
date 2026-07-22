@@ -1,0 +1,12 @@
+# Python virtual environment
+.venv/
+
+# Python caches and build artifacts
+__pycache__/
+*.pyc
+*.egg-info/
+
+# Kaggle data — not redistributed; download separately (see data/README.md)
+data/*.csv
+data/*.json
+data/*.xlsx
