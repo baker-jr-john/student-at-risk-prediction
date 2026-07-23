@@ -21,7 +21,7 @@ Baseline with every candidate column, demographics included: CV AUC 0.747. Each 
 | Context (department, extracurriculars)                                |                  0.503 |                    0.748 |                -0.001 |
 | Demographics & background (age, gender, income, parent ed., internet) |                  0.478 |                    0.748 |                -0.001 |
 
-Demographics & background sit at chance-level alone and cost nothing to
+Demographics & background sit at chance level alone and cost nothing to
 remove, so they are excluded from the model's inputs — an evaluated
 decision, not an omission. The subgroup check below still audits the
 model's outcomes by those attributes.

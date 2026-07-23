@@ -40,7 +40,7 @@ def run(biased: pd.DataFrame, out_dir: Path) -> None:
         "Every academic score — including Final_Score and the Total_Score that "
         "Grade is supposedly computed from — sits at |r| < 0.05. The data card "
         "admits bias was injected ('students with high attendance get slightly "
-        "better grades'); in fact attendance is the *only* signal.",
+        "better grades'); in fact, attendance is the *only* signal.",
         "",
     ]
 
@@ -105,7 +105,7 @@ def run(biased: pd.DataFrame, out_dir: Path) -> None:
         f"destroyed): test AUC **{auc_no_att:.3f}** (chance = 0.5)",
         "",
         "The model's apparent skill is entirely the injected attendance artifact. "
-        "Neutralize that one column and it collapses to a coin flip — there is no "
+        "Neutralize that one column, and it collapses to a coin flip — there is no "
         "academic signal left to find.",
         "",
     ]

@@ -17,7 +17,7 @@
 | Projects_Score        |                      -0.014 |
 | Study_Hours_per_Week  |                       0.003 |
 
-Every academic score — including Final_Score and the Total_Score that Grade is supposedly computed from — sits at |r| < 0.05. The data card admits bias was injected ('students with high attendance get slightly better grades'); in fact attendance is the *only* signal.
+Every academic score — including Final_Score and the Total_Score that Grade is supposedly computed from — sits at |r| < 0.05. The data card admits bias was injected ('students with high attendance get slightly better grades'); in fact, attendance is the *only* signal.
 
 ## Attendance by grade
 
@@ -34,7 +34,7 @@ Every academic score — including Final_Score and the Total_Score that Grade is
 - Gradient boosting, same mid-semester pipeline as the main model: test AUC **0.746**
 - Same model with Attendance values row-shuffled (column kept, signal destroyed): test AUC **0.496** (chance = 0.5)
 
-The model's apparent skill is entirely the injected attendance artifact. Neutralize that one column and it collapses to a coin flip — there is no academic signal left to find.
+The model's apparent skill is entirely the injected attendance artifact. Neutralize that one column, and it collapses to a coin flip — there is no academic signal left to find.
 
 ## Exposure of sensitive groups to the artifact
 

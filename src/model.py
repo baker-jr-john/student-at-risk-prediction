@@ -280,7 +280,7 @@ def run(primary: pd.DataFrame, out_dir: Path) -> None:
         "",
         ablation.to_markdown(index=False),
         "",
-        "Demographics & background sit at chance-level alone and cost nothing to",
+        "Demographics & background sit at chance level alone and cost nothing to",
         "remove, so they are excluded from the model's inputs — an evaluated",
         "decision, not an omission. The subgroup check below still audits the",
         "model's outcomes by those attributes.",
