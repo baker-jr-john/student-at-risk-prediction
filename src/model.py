@@ -267,7 +267,7 @@ def run(primary: pd.DataFrame, out_dir: Path) -> None:
         "mid-semester features; demographic/background columns excluded by design "
         "(see ablation below)",
         "",
-        "## Model comparison (5-fold CV on training split, ROC AUC)",
+        "## Model comparison (5-fold cross-validation (CV) on training split, ROC AUC)",
         "",
         *[f"- {r.name}: {r.cv_auc_mean:.3f} +/- {r.cv_auc_std:.3f}"
           + ("  <- selected" if r.name == best.name else "") for r in results],
@@ -275,7 +275,7 @@ def run(primary: pd.DataFrame, out_dir: Path) -> None:
         "## Feature-group ablation (5-fold CV on training split, logistic regression)",
         "",
         f"Baseline with every candidate column, demographics included: "
-        f"cross-validation (CV) AUC {ablation_base:.3f}. Each group is then evaluated alone and "
+        f"CV AUC {ablation_base:.3f}. Each group is then evaluated alone and "
         f"removed (model retrained each time):",
         "",
         ablation.to_markdown(index=False),
