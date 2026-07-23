@@ -39,7 +39,13 @@ The same pipeline trained on the biased file scores AUC 0.75, but shuffling the 
 
 ## Tradeoffs and limitations
 
-- **Recall-first threshold is a capacity decision**: catching 82% of at-risk students means flagging ~59% of the cohort. If advisor capacity is the binding constraint, the threshold curve (`fig_threshold.png`) is the dial.
+- **Recall-first threshold is a capacity decision**: catching 82% of at-risk students means flagging ~59% of the cohort. If advisor capacity is the binding constraint, the threshold curve (below) is the dial.
+
+<img src="outputs/fig_threshold.png" width="480" alt="Precision and recall vs. decision threshold, with the chosen 0.33 cutoff marked">
+
+
+*Precision and recall against the decision threshold, from out-of-fold training predictions (before the test set was touched). The chosen cutoff — 0.33, the lowest threshold clearing recall ≥ 0.80 — is the dotted line; sliding it right trades recall for precision as advisor capacity allows.*
+
 - The behavioral/demographic columns look synthetic (near-zero correlation with everything); real learning-management-system (LMS)-derived features would not behave this way, so absolute performance here says little about a production deployment.
 - Single snapshot, no time dimension; no hyperparameter tuning (defaults were compared; the linear model's win suggests tuning trees would buy little); binary target hides the D-vs-F severity distinction.
 
