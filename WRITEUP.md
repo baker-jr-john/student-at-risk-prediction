@@ -15,7 +15,7 @@ The Kaggle Student Performance & Behavior Dataset ships as two files — a *prim
 
 **Protocol.** Stratified 80/20 holdout; 5-fold cross-validation (CV) on the training split compared logistic regression against gradient boosting (LR won, CV AUC 0.748 vs. 0.714 — the signal is essentially linear); the operating threshold was chosen from training out-of-fold probabilities to hit recall ≥ 0.80 (missing an at-risk student costs more than a false alert), and the test split was scored once.
 
-**Feature-group ablation.** Retraining with each feature group removed (vs. an all-columns baseline of CV AUC 0.747) shows the four graded components carry essentially all the signal. Alone, they score 0.750; without them, the model collapses to 0.487. Meanwhile, attendance, self-reported habits, and demographics each cost almost nothing to remove. The demographic block is chance-level even on its own, so the shipped model takes no demographic inputs: an evaluated exclusion, not an omission, and the subgroup audit still checks outcomes by those attributes. It's also a property of this dataset worth knowing before anyone promises "behavioral early warning" from it.
+**Feature-group ablation.** Retraining with each feature group removed (vs. an all-columns baseline of CV AUC 0.747) shows the four graded components carry essentially all the signal. Alone, they score 0.750; without them, the model collapses to 0.487. Meanwhile, attendance, self-reported habits, and demographics each cost almost nothing to remove. The demographic block is chance level even on its own, so the shipped model takes no demographic inputs: an evaluated exclusion, not an omission, and the subgroup audit still checks outcomes by those attributes. It's also a property of this dataset worth knowing before anyone promises "behavioral early warning" from it.
 
 **Results (held-out).**
 
@@ -46,7 +46,7 @@ The same pipeline trained on the biased file scores AUC 0.75, but shuffling the 
 
 *Precision and recall against the decision threshold, from out-of-fold training predictions (before the test set was touched). The chosen cutoff — 0.33, the lowest threshold clearing recall ≥ 0.80 — is the dotted line; sliding it right trades recall for precision as advisor capacity allows.*
 
-- The behavioral/demographic columns carry no signal about the outcome — chance-level alone in the ablation (AUC 0.49/0.48) and |r| < 0.05 with Grade — which reads as synthetic. Because the inputs are essentially signal-free, the absolute performance here says little about how the same approach would do on data whose features actually carry information.
+- The behavioral/demographic columns carry no signal about the outcome — chance level alone in the ablation (AUC 0.49/0.48) and |r| < 0.05 with Grade — which reads as synthetic. Because the inputs are essentially signal-free, the absolute performance here says little about how the same approach would do on data whose features actually carry information.
 - Single snapshot, no time dimension; no hyperparameter tuning (defaults were compared; the linear model's win suggests tuning trees would buy little); binary target hides the D-vs-F severity distinction.
 
 ## Sensible next steps
