@@ -46,6 +46,8 @@ The run is deterministic (fixed seed); re-running reproduces the committed numbe
 
 ## Layout
 
+Source lives in [`src/`](src):
+
 ```
 src/config.py    # feature roles, constants — the mid-semester scenario is defined here
 src/data.py      # loading + validation report
