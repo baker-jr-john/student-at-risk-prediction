@@ -65,7 +65,7 @@ def run(biased: pd.DataFrame, out_dir: Path) -> None:
         box.set(facecolor=viz.BLUE, alpha=0.55, edgecolor=viz.BLUE)
     ax.set_xlabel("Grade")
     ax.set_ylabel("Attendance (%)")
-    ax.set_title("Biased file: the grade 'ladder' is an attendance ladder")
+    ax.set_title("Biased file: grade separation tracks attendance, not coursework")
     fig.savefig(out_dir / "fig_audit_attendance_by_grade.png")
     plt.close(fig)
 
