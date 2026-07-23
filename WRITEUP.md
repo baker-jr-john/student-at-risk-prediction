@@ -46,12 +46,12 @@ The same pipeline trained on the biased file scores AUC 0.75, but shuffling the 
 
 *Precision and recall against the decision threshold, from out-of-fold training predictions (before the test set was touched). The chosen cutoff — 0.33, the lowest threshold clearing recall ≥ 0.80 — is the dotted line; sliding it right trades recall for precision as advisor capacity allows.*
 
-- The behavioral/demographic columns look synthetic (near-zero correlation with everything); real learning-management-system (LMS)-derived features would not behave this way, so absolute performance here says little about a production deployment.
+- The behavioral/demographic columns carry no signal about the outcome — chance-level alone in the ablation (AUC 0.49/0.48) and |r| < 0.05 with Grade — which reads as synthetic. Because the inputs are essentially signal-free, the absolute performance here says little about how the same approach would do on data whose features actually carry information.
 - Single snapshot, no time dimension; no hyperparameter tuning (defaults were compared; the linear model's win suggests tuning trees would buy little); binary target hides the D-vs-F severity distinction.
 
 ## Sensible next steps
 
 1. Calibrate probabilities and publish risk *tiers* instead of a hard flag, so advisor capacity sets the cutoff, not the model.
-2. Replace snapshot behavior columns with longitudinal LMS activity features (submission timing, engagement trajectories) — where early-warning signal actually lives.
+2. Replace snapshot behavior columns with longitudinal learning-management-system (LMS) activity features (submission timing, engagement trajectories) — a more likely source of early-warning signal.
 3. Wire the subgroup check into routine evaluation (Fairlearn's MetricFrame) and re-audit at every retraining.
 4. Add label-provenance validation to ingest: reconcile Grade against its documented formula and flag decoupling like the biased files before training.
