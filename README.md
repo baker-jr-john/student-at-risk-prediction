@@ -33,7 +33,7 @@ A `data/` folder next to the project root (`../data`) is also auto-detected, or 
 .venv/bin/python -m src.run_all            # or: --data-dir /path/to/data
 ```
 
-Runs in a few minutes (the feature-group ablation alone retrains the model eleven times) and writes everything to `outputs/`:
+Runs in a few minutes (the feature-group ablation alone retrains the model eleven times) and writes everything to [`outputs/`](outputs):
 
 | Output | What it is |
 |---|---|
