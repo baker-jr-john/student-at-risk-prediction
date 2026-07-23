@@ -4,7 +4,7 @@ Mid-semester early-warning model for student academic outcomes, built on the Kag
 
 Start with [`WRITEUP.md`](WRITEUP.md) for what was found and built and why. Everything below is how to reproduce it.
 
-All commands below are run from the project root — the folder containing this README and `src/`.
+All commands below are run from the project root — the folder containing this README and [`src/`](src).
 
 ## Setup
 
