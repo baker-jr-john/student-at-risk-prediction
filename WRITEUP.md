@@ -52,6 +52,6 @@ The same pipeline trained on the biased file scores AUC 0.75, but shuffling the 
 ## Sensible next steps
 
 1. Calibrate probabilities and publish risk *tiers* instead of a hard flag, so advisor capacity sets the cutoff, not the model.
-2. Replace snapshot behavior columns with longitudinal learning-management-system (LMS) activity features (submission timing, engagement trajectories) — a more likely source of early-warning signal.
+2. Replace snapshot behavior columns with longitudinal learning-management-system activity features (submission timing, engagement trajectories) — a more likely source of early-warning signal.
 3. Wire the subgroup check into routine evaluation (Fairlearn's MetricFrame) and re-audit at every retraining.
 4. Add label-provenance validation to ingest: reconcile Grade against its documented formula and flag decoupling like the biased files before training.
