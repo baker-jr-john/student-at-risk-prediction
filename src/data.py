@@ -24,7 +24,7 @@ def _recomputed_total(df: pd.DataFrame, participation_scale: float) -> pd.Series
     """Total score per the data card's documented weights.
 
     participation_scale rescales Participation_Score to 0-100 first (the two
-    files disagree on its range: 0-100 in the masked file, 0-10 in the biased
+    files disagree on its range: 0-100 in the primary file, 0-10 in the biased
     file despite the data card saying 0-10 for both).
     """
     w = config.DOCUMENTED_WEIGHTS
@@ -41,7 +41,7 @@ def _grade_binning_table(df: pd.DataFrame) -> pd.DataFrame:
     )
 
 
-def validate(masked: pd.DataFrame, biased: pd.DataFrame, out_dir: Path) -> None:
+def validate(primary: pd.DataFrame, biased: pd.DataFrame, out_dir: Path) -> None:
     lines: list[str] = ["# Data validation report", ""]
 
     def section(title: str) -> None:
@@ -51,7 +51,7 @@ def validate(masked: pd.DataFrame, biased: pd.DataFrame, out_dir: Path) -> None:
         lines.append(text)
 
     section("Shapes, keys, and missing values")
-    for name, df in (("masked", masked), ("biased", biased)):
+    for name, df in (("primary", primary), ("biased", biased)):
         nulls = df.isna().sum()
         nulls = nulls[nulls > 0].to_dict()
         add(f"- **{name}**: {df.shape[0]} rows x {df.shape[1] - 2} columns; "
@@ -59,41 +59,41 @@ def validate(masked: pd.DataFrame, biased: pd.DataFrame, out_dir: Path) -> None:
             f"nulls: {nulls or 'none'}")
 
     section("The two files describe the same roster with contradictory values")
-    merged = masked.merge(biased, on="Student_ID", suffixes=("_m", "_b"))
-    add(f"- Shared Student_IDs: {len(merged)} of {len(masked)}")
+    merged = primary.merge(biased, on="Student_ID", suffixes=("_m", "_b"))
+    add(f"- Shared Student_IDs: {len(merged)} of {len(primary)}")
     for col in ["Department", "Attendance (%)", "Midterm_Score", "Grade"]:
         diff = (merged[f"{col}_m"] != merged[f"{col}_b"]).mean()
         add(f"- `{col}` differs for {diff:.0%} of shared students")
     add("- Conclusion: these are two variants of one extract, not two cohorts; "
         "they cannot both be treated as ground truth.")
 
-    section("Masked file: Grade is a deterministic binning of Total_Score")
-    add(_grade_binning_table(masked).to_markdown())
+    section("Primary file: Grade is a deterministic binning of Total_Score")
+    add(_grade_binning_table(primary).to_markdown())
     add()
-    bins = pd.cut(masked["Total_Score"], [0, 60, 70, 80, 90, 101],
+    bins = pd.cut(primary["Total_Score"], [0, 60, 70, 80, 90, 101],
                   labels=["F", "D", "C", "B", "A"], right=False)
-    agreement = (bins.astype(str) == masked[config.TARGET_COL]).mean()
+    agreement = (bins.astype(str) == primary[config.TARGET_COL]).mean()
     add(f"- 10-point bins (A>=90 ... F<60) reproduce Grade for {agreement:.1%} of rows.")
     add("- Implication: predicting Grade with the score components included is "
         "reconstructing an arithmetic formula, not learning about students.")
 
     section("Does Total_Score follow the documented weights?")
-    corr_m = masked["Total_Score"].corr(_recomputed_total(masked, participation_scale=1.0))
+    corr_m = primary["Total_Score"].corr(_recomputed_total(primary, participation_scale=1.0))
     corr_b = biased["Total_Score"].corr(_recomputed_total(biased, participation_scale=10.0))
-    add(f"- masked: corr(Total_Score, documented weighted sum) = {corr_m:.2f} "
+    add(f"- primary: corr(Total_Score, documented weighted sum) = {corr_m:.2f} "
         "(Participation read as 0-100, contradicting the data card's 0-10)")
     add(f"- biased: corr(Total_Score, documented weighted sum) = {corr_b:.2f} "
         "(Participation rescaled from its observed 0-10 to 0-100)")
-    add("- The masked file is internally consistent: Total_Score follows the "
+    add("- The primary file is internally consistent: Total_Score follows the "
         "documented weights exactly once Participation is treated as 0-100, and "
         "Grade is Total_Score binned. The biased file's Total_Score follows no "
         "documented rule at all.")
 
     section("Documentation vs. data: Participation_Score scale")
-    add(f"- Data card says 0-10. Observed: masked "
-        f"{masked['Participation_Score'].min():.0f}-{masked['Participation_Score'].max():.0f}, "
+    add(f"- Data card says 0-10. Observed: primary "
+        f"{primary['Participation_Score'].min():.0f}-{primary['Participation_Score'].max():.0f}, "
         f"biased {biased['Participation_Score'].min():.0f}-{biased['Participation_Score'].max():.0f}. "
-        "The card's scale is treated as the documentation error in the masked "
+        "The card's scale is treated as the documentation error in the primary "
         "file's case (the weights reconcile perfectly under 0-100).")
 
     section("Biased file: Grade correlates with Attendance and nothing else")
@@ -109,10 +109,10 @@ def validate(masked: pd.DataFrame, biased: pd.DataFrame, out_dir: Path) -> None:
         "uncorrelated with Grade in this file. Its Grade is attendance plus "
         "noise — see outputs/audit_report.md.")
 
-    section("Class balance for the chosen target (at-risk = D or F, masked file)")
-    add(f"- at-risk rate: {masked['at_risk'].mean():.1%} "
-        f"({int(masked['at_risk'].sum())} of {len(masked)})")
-    add(f"- Grade counts: {masked[config.TARGET_COL].value_counts().to_dict()}")
+    section("Class balance for the chosen target (at-risk = D or F, primary file)")
+    add(f"- at-risk rate: {primary['at_risk'].mean():.1%} "
+        f"({int(primary['at_risk'].sum())} of {len(primary)})")
+    add(f"- Grade counts: {primary[config.TARGET_COL].value_counts().to_dict()}")
     add("- Note the 16 A's out of 5,000 — one reason a 5-class letter-grade "
         "model was set aside in favor of the binary at-risk target.")
 

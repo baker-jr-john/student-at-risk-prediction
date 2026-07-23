@@ -8,7 +8,7 @@ quantities and Grade is computed from them, so they are excluded as leakage.
 
 from pathlib import Path
 
-MASKED_CSV = "Students Performance Dataset.csv"
+PRIMARY_CSV = "Students Performance Dataset.csv"
 BIASED_CSV = "Students_Grading_Dataset_Biased.csv"
 
 ID_COLS = ["Student_ID", "First_Name", "Last_Name", "Email"]
@@ -96,14 +96,14 @@ def resolve_data_dir(cli_value: str | None) -> Path:
     """Locate the dataset. Order: explicit --data-dir, ./data, ../data."""
     if cli_value:
         p = Path(cli_value)
-        if not (p / MASKED_CSV).exists():
-            raise FileNotFoundError(f"{MASKED_CSV!r} not found in {p.resolve()}")
+        if not (p / PRIMARY_CSV).exists():
+            raise FileNotFoundError(f"{PRIMARY_CSV!r} not found in {p.resolve()}")
         return p
     for candidate in (Path("data"), Path("..") / "data"):
-        if (candidate / MASKED_CSV).exists():
+        if (candidate / PRIMARY_CSV).exists():
             return candidate
     raise FileNotFoundError(
-        f"Could not find the dataset. Put {MASKED_CSV!r} (from the Kaggle "
+        f"Could not find the dataset. Put {PRIMARY_CSV!r} (from the Kaggle "
         "'students-grading-dataset' package) in the data/ folder, or pass "
         "--data-dir pointing at the folder that contains it."
     )

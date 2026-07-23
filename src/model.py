@@ -152,11 +152,11 @@ def _coefficient_table(pipe: Pipeline) -> pd.DataFrame | None:
     return top.round(3).to_frame()
 
 
-def run(masked: pd.DataFrame, out_dir: Path) -> None:
+def run(primary: pd.DataFrame, out_dir: Path) -> None:
     viz.apply_style()
     import matplotlib.pyplot as plt
 
-    X, y = make_xy(masked)
+    X, y = make_xy(primary)
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=config.TEST_SIZE, stratify=y, random_state=config.SEED
     )
@@ -257,7 +257,7 @@ def run(masked: pd.DataFrame, out_dir: Path) -> None:
 
     # --- metrics report ---
     lines = [
-        "# Model report — mid-semester at-risk prediction (masked file)",
+        "# Model report — mid-semester at-risk prediction (primary file)",
         "",
         f"- Target: at-risk = Grade in {sorted(config.AT_RISK_GRADES)} "
         f"(base rate {y.mean():.1%})",

@@ -1,10 +1,10 @@
 # Student At-Risk Prediction
 
-Mid-semester early-warning model for student academic outcomes, built on the Kaggle [Students Grading Dataset](https://www.kaggle.com/datasets/mahmoudelhemaly/students-grading-dataset), plus a data-quality/bias audit of the dataset's "biased" variant.
+Mid-semester early-warning model for student academic outcomes, built on the Kaggle [Student Performance & Behavior Dataset](https://www.kaggle.com/datasets/mahmoudelhemaly/students-grading-dataset), plus a data-quality/bias audit of the dataset's "biased" variant.
 
 Start with [`WRITEUP.md`](WRITEUP.md) for what was found and built and why. Everything below is how to reproduce it.
 
-All commands below are run from the project root — the folder containing this README and `src/`. If you received the project as an archive, extract it whole and work inside it.
+All commands below are run from the project root — the folder containing this README and `src/`.
 
 ## Setup
 
@@ -22,7 +22,7 @@ python -m venv .venv && .venv/bin/pip install -e .
 
 Put the two CSVs from the Kaggle package in the `data/` folder:
 
-- `Students Performance Dataset.csv` (the "masked" file)
+- `Students Performance Dataset.csv` (the "primary" file)
 - `Students_Grading_Dataset_Biased.csv` (the "biased" file)
 
 A `data/` folder next to the project root (`../data`) is also auto-detected, or pass `--data-dir` to run against data anywhere else.

@@ -3,7 +3,7 @@
 
 ## Shapes, keys, and missing values
 
-- **masked**: 5000 rows x 23 columns; duplicate Student_IDs: 0; nulls: {'Parent_Education_Level': 1025}
+- **primary**: 5000 rows x 23 columns; duplicate Student_IDs: 0; nulls: {'Parent_Education_Level': 1025}
 - **biased**: 5000 rows x 23 columns; duplicate Student_IDs: 0; nulls: {'Attendance (%)': 516, 'Assignments_Avg': 517, 'Parent_Education_Level': 1794}
 
 ## The two files describe the same roster with contradictory values
@@ -15,7 +15,7 @@
 - `Grade` differs for 82% of shared students
 - Conclusion: these are two variants of one extract, not two cohorts; they cannot both be treated as ground truth.
 
-## Masked file: Grade is a deterministic binning of Total_Score
+## Primary file: Grade is a deterministic binning of Total_Score
 
 | Grade   |   min |   max |   count |
 |:--------|------:|------:|--------:|
@@ -30,13 +30,13 @@
 
 ## Does Total_Score follow the documented weights?
 
-- masked: corr(Total_Score, documented weighted sum) = 1.00 (Participation read as 0-100, contradicting the data card's 0-10)
+- primary: corr(Total_Score, documented weighted sum) = 1.00 (Participation read as 0-100, contradicting the data card's 0-10)
 - biased: corr(Total_Score, documented weighted sum) = -0.01 (Participation rescaled from its observed 0-10 to 0-100)
-- The masked file is internally consistent: Total_Score follows the documented weights exactly once Participation is treated as 0-100, and Grade is Total_Score binned. The biased file's Total_Score follows no documented rule at all.
+- The primary file is internally consistent: Total_Score follows the documented weights exactly once Participation is treated as 0-100, and Grade is Total_Score binned. The biased file's Total_Score follows no documented rule at all.
 
 ## Documentation vs. data: Participation_Score scale
 
-- Data card says 0-10. Observed: masked 0-100, biased 0-10. The card's scale is treated as the documentation error in the masked file's case (the weights reconcile perfectly under 0-100).
+- Data card says 0-10. Observed: primary 0-100, biased 0-10. The card's scale is treated as the documentation error in the primary file's case (the weights reconcile perfectly under 0-100).
 
 ## Biased file: Grade correlates with Attendance and nothing else
 
@@ -57,7 +57,7 @@
 
 - Every academic score, including Final_Score and Total_Score, is uncorrelated with Grade in this file. Its Grade is attendance plus noise — see outputs/audit_report.md.
 
-## Class balance for the chosen target (at-risk = D or F, masked file)
+## Class balance for the chosen target (at-risk = D or F, primary file)
 
 - at-risk rate: 40.8% (2039 of 5000)
 - Grade counts: {'C': 2307, 'D': 1760, 'B': 638, 'F': 279, 'A': 16}

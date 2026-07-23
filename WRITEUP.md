@@ -2,14 +2,14 @@
 
 ## What I found before modeling
 
-The package contains two variants of the *same* 5,000-student roster with contradictory values (departments differ for 74% of students, grades for 82%), so they cannot both be ground truth. Validating each against the data card (`outputs/validation_report.md`) surfaced the following:
+The Kaggle Student Performance & Behavior Dataset ships as two files — a *primary* variant and a *biased* variant — of the *same* 5,000-student roster, with contradictory values (departments differ for 74% of students, grades for 82%), so they cannot both be ground truth. Validating each against the data card (`outputs/validation_report.md`) surfaced the following:
 
-- **Masked file** — internally consistent, once you correct one error in the data card: it documents Participation_Score on a 0–10 scale, but in this file it's actually 0–100. Correcting for that, Total_Score reconciles exactly with the documented component weights, and Grade is simply Total_Score binned into 10-point bands. I treated this file as the usable one.
+- **Primary file** — internally consistent, once you correct one error in the data card: it documents Participation_Score on a 0–10 scale, but in this file it's actually 0–100. Correcting for that, Total_Score reconciles exactly with the documented component weights, and Grade is simply Total_Score binned into 10-point bands. I treated this file as the usable one.
 - **Biased file** — Grade correlates with Attendance (r = 0.61) and with nothing else; every academic score, including the Total_Score that Grade is supposedly computed from, sits at |r| < 0.05. Its labels are attendance plus noise, so I set it aside for modeling and used it for a bias audit instead.
 
 ## What I built
 
-**Target.** Binary at-risk (grade D/F) rather than 5-class letter grade: it matches the advisor use case in the assignment brief, and the masked file has only 16 A's in 5,000 rows.
+**Target.** Binary at-risk (grade D/F) rather than 5-class letter grade: it matches the advisor use case in the assignment brief, and the primary file has only 16 A's in 5,000 rows.
 
 **Leakage policy.** Grade is computed from the score columns, so a model given Final_Score/Projects_Score/Total_Score would reconstruct the grading formula. I defined a mid-semester snapshot: midterm, quiz/assignment averages, participation, attendance, self-reported habits, and course context — the information an advisor plausibly has when intervening still helps. Demographic/background columns were evaluated as candidate inputs and excluded on the evidence (below).
 

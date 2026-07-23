@@ -1,4 +1,4 @@
-# Model report — mid-semester at-risk prediction (masked file)
+# Model report — mid-semester at-risk prediction (primary file)
 
 - Target: at-risk = Grade in ['D', 'F'] (base rate 40.8%)
 - Split: stratified 80%/20%; all selection on the training split only
