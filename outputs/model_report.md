@@ -4,14 +4,14 @@
 - Split: stratified 80%/20%; all selection on the training split only
 - Model inputs: 10 mid-semester features; demographic/background columns excluded by design (see ablation below)
 
-## Model comparison (5-fold cross-validation (CV) on training split, ROC AUC)
+## Model comparison (5-fold cross-validation on training split, ROC AUC)
 
 - logistic_regression: 0.748 +/- 0.010  <- selected
 - gradient_boosting: 0.714 +/- 0.006
 
-## Feature-group ablation (5-fold CV on training split, logistic regression)
+## Feature-group ablation (5-fold cross-validation on training split, logistic regression)
 
-Baseline with every candidate column, demographics included: CV AUC 0.747. Each group is then evaluated alone and removed (model retrained each time):
+Baseline with every candidate column, demographics included: cross-validation (CV) AUC 0.747. Each group is then evaluated alone and removed (model retrained each time):
 
 | group                                                                 |   CV AUC (group alone) |   CV AUC (group removed) |   AUC cost of removal |
 |:----------------------------------------------------------------------|-----------------------:|-------------------------:|----------------------:|
