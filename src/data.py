@@ -73,7 +73,7 @@ def validate(primary: pd.DataFrame, biased: pd.DataFrame, out_dir: Path) -> None
     bins = pd.cut(primary["Total_Score"], [0, 60, 70, 80, 90, 101],
                   labels=["F", "D", "C", "B", "A"], right=False)
     agreement = (bins.astype(str) == primary[config.TARGET_COL]).mean()
-    add(f"- 10-point bins (A>=90 ... F<60) reproduce Grade for {agreement:.1%} of rows.")
+    add(f"- 10-point bins (A≥90 ... F<60) reproduce Grade for {agreement:.1%} of rows.")
     add("- Implication: predicting Grade with the score components included is "
         "reconstructing an arithmetic formula, not learning about students.")
 

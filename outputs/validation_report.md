@@ -25,7 +25,7 @@
 | B       | 80    | 89.97 |     638 |
 | A       | 90.09 | 95.09 |      16 |
 
-- 10-point bins (A>=90 ... F<60) reproduce Grade for 100.0% of rows.
+- 10-point bins (A≥90 ... F<60) reproduce Grade for 100.0% of rows.
 - Implication: predicting Grade with the score components included is reconstructing an arithmetic formula, not learning about students.
 
 ## Does Total_Score follow the documented weights?

@@ -227,7 +227,7 @@ def run(primary: pd.DataFrame, out_dir: Path) -> None:
     ax.set_xlabel("Decision threshold")
     ax.set_ylabel("Score (out-of-fold, training split)")
     ax.set_ylim(0, 1.02)
-    ax.set_title(f"Threshold chosen for recall >= {config.RECALL_TARGET:.0%} before touching the test set")
+    ax.set_title(f"Threshold chosen for recall ≥ {config.RECALL_TARGET:.0%} before touching the test set")
     fig.savefig(out_dir / "fig_threshold.png")
     plt.close(fig)
 
