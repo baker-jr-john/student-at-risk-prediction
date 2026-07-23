@@ -289,7 +289,7 @@ def run(primary: pd.DataFrame, out_dir: Path) -> None:
         "",
         f"- ROC AUC: {auc:.3f}",
         f"- Operating threshold: {threshold:.2f} "
-        f"(chosen on training out-of-fold (OOF) probabilities for recall >= {config.RECALL_TARGET:.0%})",
+        f"(chosen on training out-of-fold [OOF] probabilities for recall ≥ {config.RECALL_TARGET:.0%})",
         f"- Recall: {recall:.3f} | Precision: {precision:.3f} | "
         f"F1: {f1:.3f} | Cohen's kappa: {kappa:.3f}",
         "",

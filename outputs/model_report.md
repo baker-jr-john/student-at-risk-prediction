@@ -29,7 +29,7 @@ model's outcomes by those attributes.
 ## Held-out test performance (selected model)
 
 - ROC AUC: 0.757
-- Operating threshold: 0.33 (chosen on training out-of-fold (OOF) probabilities for recall >= 80%)
+- Operating threshold: 0.33 (chosen on training out-of-fold [OOF] probabilities for recall ≥ 80%)
 - Recall: 0.819 | Precision: 0.563 | F1: 0.667 | Cohen's kappa: 0.356
 
 Confusion matrix (rows = actual, cols = predicted; positive = at-risk):
