@@ -275,7 +275,7 @@ def run(primary: pd.DataFrame, out_dir: Path) -> None:
         "## Feature-group ablation (5-fold CV on training split, logistic regression)",
         "",
         f"Baseline with every candidate column, demographics included: "
-        f"CV AUC {ablation_base:.3f}. Each group is then evaluated alone and "
+        f"cross-validation (CV) AUC {ablation_base:.3f}. Each group is then evaluated alone and "
         f"removed (model retrained each time):",
         "",
         ablation.to_markdown(index=False),
@@ -287,10 +287,10 @@ def run(primary: pd.DataFrame, out_dir: Path) -> None:
         "",
         "## Held-out test performance (selected model)",
         "",
-        f"- ROC AUC: **{auc:.3f}**",
+        f"- ROC AUC: {auc:.3f}",
         f"- Operating threshold: {threshold:.2f} "
         f"(chosen on training OOF probabilities for recall >= {config.RECALL_TARGET:.0%})",
-        f"- Recall: **{recall:.3f}** | Precision: **{precision:.3f}** | "
+        f"- Recall: {recall:.3f} | Precision: {precision:.3f} | "
         f"F1: {f1:.3f} | Cohen's kappa: {kappa:.3f}",
         "",
         "Confusion matrix (rows = actual, cols = predicted; positive = at-risk):",
@@ -304,7 +304,8 @@ def run(primary: pd.DataFrame, out_dir: Path) -> None:
         "",
         groups.to_markdown(index=False),
         "",
-        "See WRITEUP.md for interpretation of any recall/FPR/flag-rate gaps, and",
+        "See [WRITEUP.md](../WRITEUP.md) for interpretation of any "
+        "recall/false positive rate (FPR)/flag-rate gaps, and",
         "audit_report.md for the biased file, where the failure mode is different.",
     ]
     if coef_table is not None:
@@ -321,9 +322,9 @@ def run(primary: pd.DataFrame, out_dir: Path) -> None:
         "",
         "## Figures",
         "",
-        "- fig_roc.png — ROC curves, both candidates, test split",
-        "- fig_threshold.png — precision/recall vs. threshold with the chosen operating point",
-        "- fig_permutation_importance.png — importance on the original columns",
+        "- [fig_roc.png](fig_roc.png) — ROC curves, both candidates, test split",
+        "- [fig_threshold.png](fig_threshold.png) — precision/recall vs. threshold with the chosen operating point",
+        "- [fig_permutation_importance.png](fig_permutation_importance.png) — importance on the original columns",
     ]
 
     out_path = out_dir / "model_report.md"

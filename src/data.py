@@ -107,13 +107,13 @@ def validate(primary: pd.DataFrame, biased: pd.DataFrame, out_dir: Path) -> None
     add()
     add("- Every academic score, including Final_Score and Total_Score, is "
         "uncorrelated with Grade in this file. Its Grade is attendance plus "
-        "noise — see outputs/audit_report.md.")
+        "noise — see [outputs/audit_report.md](audit_report.md).")
 
     section("Class balance for the chosen target (at-risk = D or F, primary file)")
     add(f"- at-risk rate: {primary['at_risk'].mean():.1%} "
         f"({int(primary['at_risk'].sum())} of {len(primary)})")
     add(f"- Grade counts: {primary[config.TARGET_COL].value_counts().to_dict()}")
-    add("- Note the 16 A's out of 5,000 — one reason a 5-class letter-grade "
+    add("- Note the 16 A's out of 5000 — one reason a 5-class letter-grade "
         "model was set aside in favor of the binary at-risk target.")
 
     out_path = out_dir / "validation_report.md"

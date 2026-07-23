@@ -55,10 +55,10 @@
 | Projects_Score        |                      -0.014 |
 | Study_Hours_per_Week  |                       0.003 |
 
-- Every academic score, including Final_Score and Total_Score, is uncorrelated with Grade in this file. Its Grade is attendance plus noise — see outputs/audit_report.md.
+- Every academic score, including Final_Score and Total_Score, is uncorrelated with Grade in this file. Its Grade is attendance plus noise — see [outputs/audit_report.md](audit_report.md).
 
 ## Class balance for the chosen target (at-risk = D or F, primary file)
 
 - at-risk rate: 40.8% (2039 of 5000)
 - Grade counts: {'C': 2307, 'D': 1760, 'B': 638, 'F': 279, 'A': 16}
-- Note the 16 A's out of 5,000 — one reason a 5-class letter-grade model was set aside in favor of the binary at-risk target.
+- Note the 16 A's out of 5000 — one reason a 5-class letter-grade model was set aside in favor of the binary at-risk target.

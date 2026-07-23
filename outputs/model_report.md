@@ -11,7 +11,7 @@
 
 ## Feature-group ablation (5-fold CV on training split, logistic regression)
 
-Baseline with every candidate column, demographics included: CV AUC 0.747. Each group is then evaluated alone and removed (model retrained each time):
+Baseline with every candidate column, demographics included: cross-validation (CV) AUC 0.747. Each group is then evaluated alone and removed (model retrained each time):
 
 | group                                                                 |   CV AUC (group alone) |   CV AUC (group removed) |   AUC cost of removal |
 |:----------------------------------------------------------------------|-----------------------:|-------------------------:|----------------------:|
@@ -28,9 +28,9 @@ model's outcomes by those attributes.
 
 ## Held-out test performance (selected model)
 
-- ROC AUC: **0.757**
+- ROC AUC: 0.757
 - Operating threshold: 0.33 (chosen on training OOF probabilities for recall >= 80%)
-- Recall: **0.819** | Precision: **0.563** | F1: 0.667 | Cohen's kappa: 0.356
+- Recall: 0.819 | Precision: 0.563 | F1: 0.667 | Cohen's kappa: 0.356
 
 Confusion matrix (rows = actual, cols = predicted; positive = at-risk):
 
@@ -51,7 +51,7 @@ Confusion matrix (rows = actual, cols = predicted; positive = at-risk):
 | Internet_Access_at_Home | No      | 495 |       0.436 |       0.592 |        0.815 | 0.419 |
 | Internet_Access_at_Home | Yes     | 505 |       0.38  |       0.594 |        0.823 | 0.454 |
 
-See WRITEUP.md for interpretation of any recall/FPR/flag-rate gaps, and
+See [WRITEUP.md](../WRITEUP.md) for interpretation of any recall/false positive rate (FPR)/flag-rate gaps, and
 audit_report.md for the biased file, where the failure mode is different.
 
 ## Largest standardized coefficients (selected logistic regression)
@@ -76,6 +76,6 @@ so magnitudes are comparable across features.
 
 ## Figures
 
-- fig_roc.png — ROC curves, both candidates, test split
-- fig_threshold.png — precision/recall vs. threshold with the chosen operating point
-- fig_permutation_importance.png — importance on the original columns
+- [fig_roc.png](fig_roc.png) — ROC curves, both candidates, test split
+- [fig_threshold.png](fig_threshold.png) — precision/recall vs. threshold with the chosen operating point
+- [fig_permutation_importance.png](fig_permutation_importance.png) — importance on the original columns

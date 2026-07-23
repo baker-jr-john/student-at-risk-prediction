@@ -31,10 +31,10 @@ Every academic score — including Final_Score and the Total_Score that Grade is
 
 ## What a model trained on this file actually learns
 
-- Gradient boosting, same mid-semester pipeline as the main model: test AUC **0.746**
-- Same model with Attendance values row-shuffled (column kept, signal destroyed): test AUC **0.496** (chance = 0.5)
+- Gradient boosting, same mid-semester pipeline as the main model: test AUC 0.746
+- Same model with Attendance values row-shuffled (column kept, signal destroyed): test AUC 0.496 (chance = 0.5)
 
-The model's apparent skill is entirely the injected attendance artifact. Neutralize that one column, and it collapses to a coin flip — there is no academic signal left to find.
+The model's apparent skill is entirely the injected attendance artifact. Neutralize that one column, and it collapses to a coin flip; there is no academic signal left to find.
 
 ## Exposure of sensitive groups to the artifact
 
@@ -48,7 +48,7 @@ The model's apparent skill is entirely the injected attendance artifact. Neutral
 | Internet_Access_at_Home | No      |  515 |            75.025 |          0.336 |
 | Internet_Access_at_Home | Yes     | 4485 |            75.479 |          0.348 |
 
-Mean attendance differs by at most 0.6 points across groups of any audited attribute, so the injected bias does not concentrate on a protected group in this extract. That is luck, not safety: the failure is an integrity failure (grades decoupled from academic work), and the same mechanism would become a fairness failure the moment attendance correlates with, say, income or home internet access — as it often does in real cohorts.
+Mean attendance differs by at most 0.6 points across groups of any audited attribute, so the injected bias does not concentrate on a protected group in this extract. That is luck, not safety: the failure is an integrity failure (grades decoupled from academic work), and the same mechanism would become a fairness failure the moment attendance correlates with, say, income or home internet access, as it often does in real cohorts.
 
 ## Verdict
 

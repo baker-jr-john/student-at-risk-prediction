@@ -100,12 +100,12 @@ def run(biased: pd.DataFrame, out_dir: Path) -> None:
         "## What a model trained on this file actually learns",
         "",
         f"- Gradient boosting, same mid-semester pipeline as the main model: "
-        f"test AUC **{auc_full:.3f}**",
+        f"test AUC {auc_full:.3f}",
         f"- Same model with Attendance values row-shuffled (column kept, signal "
-        f"destroyed): test AUC **{auc_no_att:.3f}** (chance = 0.5)",
+        f"destroyed): test AUC {auc_no_att:.3f} (chance = 0.5)",
         "",
         "The model's apparent skill is entirely the injected attendance artifact. "
-        "Neutralize that one column, and it collapses to a coin flip — there is no "
+        "Neutralize that one column, and it collapses to a coin flip; there is no "
         "academic signal left to find.",
         "",
     ]
@@ -135,7 +135,7 @@ def run(biased: pd.DataFrame, out_dir: Path) -> None:
             "not safety: the failure is an integrity failure (grades decoupled "
             "from academic work), and the same mechanism would become a "
             "fairness failure the moment attendance correlates with, say, "
-            "income or home internet access — as it often does in real cohorts."
+            "income or home internet access, as it often does in real cohorts."
         )
     else:
         exposure_verdict = (
