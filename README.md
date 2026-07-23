@@ -20,7 +20,7 @@ python -m venv .venv && .venv/bin/pip install -e .
 
 ## Data
 
-Put the two CSVs from the Kaggle package in the `data/` folder:
+Put the two CSVs from the Kaggle package in the [`data/`](data) folder:
 
 - `Students Performance Dataset.csv` (the "primary" file)
 - `Students_Grading_Dataset_Biased.csv` (the "biased" file)
