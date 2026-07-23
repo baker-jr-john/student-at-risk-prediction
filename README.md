@@ -37,9 +37,9 @@ Runs in a few minutes (the feature-group ablation alone retrains the model eleve
 
 | Output | What it is |
 |---|---|
-| `validation_report.md` | Data checked against its own documentation; the evidence for every modeling decision |
-| `model_report.md` | Model comparison, held-out metrics, subgroup check, coefficients |
-| `audit_report.md` | Why the biased file must not be used for outcome modeling |
+| [`validation_report.md`](outputs/validation_report.md) | Data checked against its own documentation; the evidence for every modeling decision |
+| [`model_report.md`](outputs/model_report.md) | Model comparison, held-out metrics, subgroup check, coefficients |
+| [`audit_report.md`](outputs/audit_report.md) | Why the biased file must not be used for outcome modeling |
 | `fig_*.png` | ROC, threshold choice, feature importance, audit figures |
 
 The run is deterministic (fixed seed); re-running reproduces the committed numbers.
